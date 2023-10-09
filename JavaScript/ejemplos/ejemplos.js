@@ -96,8 +96,8 @@ valor1 || valor2 es verdadero cuando al menos 1 de los valores es verdadero.
 
 */
 
-let nombre= prompt("ingrese su nombre");
-let apellido= prompt("ingrese su apellido");
+// let nombre= prompt("ingrese su nombre");
+// let apellido= prompt("ingrese su apellido");
 
 // if(nombre != "" && apellido != ""){
 //  alert(`Tu nombre es ${nombre} ${apellido}`); 
@@ -112,3 +112,86 @@ let apellido= prompt("ingrese su apellido");
 // }else{
 //   alert("Datos incorrectos");
 // }
+
+// function saludar(){
+//   console.log("Hola");
+// }
+
+// saludar();
+
+// function pedirDatos(){
+//   let  nombre =prompt("ingrese el nombre");
+//   alert(`Su nombre es ${nombre}`);
+// }
+// pedirDatos();
+
+//  EJEMPLO DE CALCULADORA
+
+// function calculadora(num1, num2, operacion) {
+//   switch (operacion) {
+//     case "+":
+//       return num1 + num2;
+//       break;
+
+//     case "-":
+//       return num1 - num2;
+//       break;
+
+//     case "*":
+//       return num1 * num2;
+//       break;
+
+//     case "/":
+//       return num1 / num2;
+//       break;
+
+//     default:
+//       return "Operación no identificada";
+//       break;
+//   }
+// }
+
+// let numeroUno = Number(prompt("Ingrese el número uno"));
+// let numeroDos = Number(prompt("Ingrese el número dos"));
+
+// let operacion = prompt("Ingrese la operación");
+
+// let resultado = calculadora(numeroUno, numeroDos, operacion);
+
+// alert(`${numeroUno} ${operacion} ${numeroDos} = ${resultado}`);
+
+let opcion= prompt(`
+ingrese la opcion requerida:
+
+1. Ropa de Mujer.
+
+2. Ropa de Hombre.
+
+3. Ropa de niño.
+`);
+while (opcion != "salir"){
+  switch(opcion){
+    case "1":
+      alert(`Tenemos camisas y pantalones`)
+      break;
+    case "2":
+      alert (`tenemos zapatos y pantalones`)
+      break;
+    case "3":
+      alert(`tenemos ropa con dibujitos!!!`)
+      break;
+    default:
+      alert(`opcion incorrecta!!!, porfavor vuelva a intentarlo.`)
+      break;
+  };
+  opcion = prompt(`
+  ingrese la opcion requerida:
+
+  1. Ropa de Mujer.
+
+  2. Ropa de Hombre.
+
+  3. Ropa de niño.
+  `);
+}
+
