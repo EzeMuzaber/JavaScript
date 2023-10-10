@@ -1,210 +1,181 @@
-/* let inicio = alert(" Bienvenidos al incio del juego");
+let nombre, apellido;
+let datosCorrectos = false;
+let jugador;
+let opcion;
+let edadSeleccionada = "";
+let juegoSeleccionado = "";
+let dificultadSeleccionada = "";
+
+let inicio = alert(" Bienvenidos al inicio del juego");
 let inicio2 = alert(`a continuacion, vera una serie de preguntas para 
 orientarlo a que juego seria el adecuado para usted`);
 let incio3= alert(`Porfavor, preste mucha atencion!!!  
 Si usted desea salir del juego escriba la palabra "salir"`);
 let inicio4= alert(` ahora si, comenzemos!!`);
- */
 
+while (!datosCorrectos) {
+    nombre = prompt("Porfavor ingrese su nombre: ");
+    apellido = prompt("ingrese su apellido: ");
 
-/* (nombre === "EZE" || nombre === "eze" || nombre ==="alex" || nombre === "ALEX") && 
-(apellido === "MUZABER" || apellido ==="muzaber") */
-/* PODRIA CREAR UNA VARIABLE QUE SUME EL NUMERO DE JUGADOR, 
-LO ALMACENE Y LO MUESTRE */
-let nombre , apellido;
-let datosCorrectos = false;
-let jugador;
-while(!datosCorrectos){
-  nombre = prompt("Porfavor ingrese su nombre: ");
-  apellido = prompt("ingrese su apellido: ");
+    if (nombre !== "" && apellido !== "") {
+        datosCorrectos = true;
+        jugador = nombre + " " + apellido;
+        alert(`Hola, ${jugador}, le damos la bienvenida!!`);
+    } else {
+        alert(
+            "Datos incorrectos. Por favor, ingrese su nombre y apellido nuevamente."
+        );
+    }
+}
+while (opcion === undefined || opcion.toLocaleLowerCase() !== "salir") {
   
-  if (nombre !== "" && apellido !== ""){
-    datosCorrectos = true;
-    jugador = nombre + " " + apellido;
-    alert(`Hola, ${jugador}, le damos la bienvenida!!`);
-  } else {
-    alert("Datos incorrectos. Por favor, ingrese su nombre y apellido nuevamente.");
-  }
-}
+    opcion = prompt(`
+        ingrese su edad:
 
-let numeroJugador = 1;
-let opcion;
+        1. menor de 12 años.
 
-//-----------FUNCIONES--------------
-function obtenerDificultad() {
-  let dificultad = prompt(`
-  1. Facil
-  2. Medio
-  3. Dificil
-  `);
-  switch (dificultad) {
-    case "1":
-      alert("Dificultad: FACIL");
-      break;
-    case "2":
-      alert("Dificultad: MEDIO");
-      break;
-    case "3":
-      alert("Dificultad: DIFICIL");
-      break;
-    default:
-      alert("Dificultad incorreta. Vuelva a intentarlo")
-      obtenerDificultad()
-  }
-}
+        2. entre 13 y 18 años.
 
-function juego1(){
-  juego1 = prompt(`
-      1. Talking Tom: ¡A por el oro!.
-
-      2. Stumble guys.
-
-      3. Clash Royale.
-      `);
-}
-function juego2(){
-  juego2 = prompt(`
-    1. Battle royale.
-
-    2.Fornite.
-
-    3. pokemon GO.
-  `);
-}
-function juego3(){
-  juego3 = prompt(`
-    1. Star Wars: Knights of the Old Republic.
-
-    2. GTA IV.
-
-    3. Candy Crush.
-  `);
-}
-function juego4(){
-  juego4 = prompt(`
-    1. World of warships.
-
-    2. Call of Duty Warzone.
-
-    3. Black Desert Online.
-  `);
-}
-/* revisar que empieza de vuelta osea pide muchos jugadores, hay que buscar un freno.
-tendria que a lo ultimo mostrar lo que eligio el jugador */
-while (opcion === undefined|| opcion.toLocaleLowerCase() !== "salir") {
-  opcion = prompt(`
-  Jugador  N° ${numeroJugador}, ingrese su edad:
-
-  1. menor de 12 años.
-
-  2. entre 13 y 17 años.
-
-  3. ente 18 y 21 años.
-
-  4. 22 años o mas.
-  
-  Salir para salir del programa
-  `);
-
-  if(opcion.toLocaleLowerCase() === "salir"){
-    break;
-  }
-
-  switch (opcion) {
-    case "1":
-      alert("seleccione que juego quiere jugar en las siguientes opciones");
-      juego1();
-      
-      switch (juego1) {
+        3. 19 años o mas.
+        
+        Escriba "Salir" para salir del programa
+    `);
+    switch (opcion) {
         case "1":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "2":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "3":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          
-          break;
-        default:
-          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-          obtenerDificultad()
-          break;
-      }
-      break;
-    case "2":
-      alert("seleccione que juego quiere jugar en las siguientes opciones");
-      juego2();
-      switch (juego2) {
-        case "1":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "2":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "3":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        default:
-          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-          break;
-      }
-      break;
-    case "3":
-      alert("seleccione que juego quiere jugar en las siguientes opciones");
-      juego3();
-      switch (juego3) {
-        case "1":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "2":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "3":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        default:
-          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-          break;
-      }
-      break;
-    case "4":
-      alert("seleccione que juego quiere jugar en las siguientes opciones");
-      juego4();
-      
-      switch (juego4) {
-        case "1":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "2":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        case "3":
-          alert("a continuacion elija la dificultad:");
-          obtenerDificultad();
-          break;
-        default:
-          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-          break;
-      }
-      break;
-    default:
-      alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-      break;
-  }
-}
+            edadSeleccionada = "Menor de 12 años";
+            juegoSeleccionado = solicitarOpcion1();
 
+            alert("a continuacion elija la dificultad:");
+            dificultadSeleccionada = obtenerDificultad();
+            break;
+        case "2":
+            edadSeleccionada = "Entre 13 y 18 años";
+            juegoSeleccionado = solicitarOpcion2();
 
-/* NECESITO UNA CREAR UNA VARIABLE QUE ALMACENE 
-LOS DATOS DEL JUGADOR CUANDO TERMINEN TODAS LAS PREGUNTAS!!  */
+            alert("a continuacion elija la dificultad:");
+            dificultadSeleccionada = obtenerDificultad();
+            break;
+        case "3":
+            edadSeleccionada = "19 años o  mas"
+            juegoSeleccionado = solicitarOpcion3();
+
+            alert("a continuacion elija la dificultad:");
+            dificultadSeleccionada = obtenerDificultad();
+            break;
+
+        case "salir":
+            alert("Saliendo del programa. ¡Hasta luego!");
+            break;
+
+        default:
+            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+            break;
+        }
+        
+        alert(`
+        Nombre: ${jugador};
+
+        Edad: ${edadSeleccionada};
+
+        Juego elegido: ${juegoSeleccionado};
+
+        Dificultad: ${dificultadSeleccionada};
+        `);
+        juegoSeleccionado = "";
+    
+    }
+    if (opcion.toLocaleLowerCase() !== "salir") {
+            
+        }
+
+    /* --------------------   FUNCIONES  ----------------------------------*/
+    function solicitarOpcion1() {
+        let opcion1 = prompt(`seleccione el juego en las opciones: 
+
+        1. Talking Tom: ¡A por el oro!.
+
+        2. Stumble guys.
+
+        3. Clash Royale.
+        ` );
+        switch (opcion1) {
+            case "1":
+                return "Talking Tom: ¡A por el oro!";
+            case "2":
+                return "Stumble guys";
+            case "3":
+                return "Clash Royale";
+            default:
+                alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+                solicitarOpcion1();
+                break;
+        }
+    }
+    function solicitarOpcion2() {
+        let opcion2 = prompt(`
+        1. Battle royale.
+
+        2.Fornite.
+
+        3. pokemon GO.
+        `);
+        switch (opcion2) {
+            case "1":
+                return "Battle royale";
+            case "2":
+                return "Fornite";
+
+            case "3":
+                return "Pokemon GO";
+            default:
+                alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+                solicitarOpcion2();
+                break;
+
+        }
+    }
+    
+    function solicitarOpcion3() {
+        let opcion3 = prompt(`
+        1. Star Wars: Knights of the Old Republic.
+
+        2. GTA IV.
+
+        3. Candy Crush.
+        `);
+        switch (opcion3) {
+            case "1":
+                return "Star Wars: Knights of the Old Republic";
+
+            case "2":
+                return "GTA IV";
+
+            case "3":
+                return "Candy Crush";
+
+            default:
+                alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+                solicitarOpcion3();
+                break;
+        }
+    }
+    function obtenerDificultad() {
+        let dificultad = prompt(`
+        1. Facil
+        2. Medio
+        3. Dificil
+        `);
+        switch (dificultad) {
+            case "1":
+                return "FACIL";
+            case "2":
+                return "MEDIO";
+            case "3":
+                return "DIFICIL";
+            default:
+                alert("Dificultad incorreta. Vuelva a intentarlo");
+                obtenerDificultad();
+                break;
+        }
+    }
+

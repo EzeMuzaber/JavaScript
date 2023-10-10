@@ -160,7 +160,7 @@ valor1 || valor2 es verdadero cuando al menos 1 de los valores es verdadero.
 
 // alert(`${numeroUno} ${operacion} ${numeroDos} = ${resultado}`);
 
-let opcion= prompt(`
+/* let opcion= prompt(`
 ingrese la opcion requerida:
 
 1. Ropa de Mujer.
@@ -168,8 +168,8 @@ ingrese la opcion requerida:
 2. Ropa de Hombre.
 
 3. Ropa de niño.
-`);
-while (opcion != "salir"){
+`); */
+/* while (opcion != "salir"){
   switch(opcion){
     case "1":
       alert(`Tenemos camisas y pantalones`)
@@ -193,5 +193,157 @@ while (opcion != "salir"){
 
   3. Ropa de niño.
   `);
+} */
+
+
+
+
+
+while (opcion === undefined|| opcion.toLocaleLowerCase() !== "salir") {
+  opcion = prompt(`
+  ingrese su edad:
+
+  1. menor de 12 años.
+
+  2. entre 13 y 17 años.
+
+  3. ente 18 y 21 años.
+
+  4. 22 años o mas.
+  
+  Salir para salir del programa
+  `);
+
+  if(opcion.toLocaleLowerCase() === "salir"){
+    break;
+  }
+
+  switch (opcion) {
+    case "1":
+      alert("seleccione que juego quiere jugar en las siguientes opciones");
+        juego1 = prompt(`
+        1. Talking Tom: ¡A por el oro!.
+
+        2. Stumble guys.
+
+        3. Clash Royale.
+        `);
+        switch(juego1){
+          case "1":
+            alert ("eligio: Talking Tom: ¡A por el oro!");
+            break;
+          case "2":
+            alert ("Eligio: Stumble guys.");
+            break;
+          case "3":
+            alert ("Eligio: clash Royale");
+            break;
+          default:
+            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+            juego1();
+        }
+      
+      
+      switch (juego1) {
+        case "1":
+          alert("a continuacion elija la dificultad:");
+          juego1();
+          obtenerDificultad();
+          edadJugador = "menor de 12 años";
+          juegoElegido = juego1;
+          break;
+        case "2":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "3":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          
+          break;
+        default:
+          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+          obtenerDificultad();
+          break;
+      }
+      break;
+    case "2":
+      alert("seleccione que juego quiere jugar en las siguientes opciones");
+      juego2();
+      switch (juego2) {
+        case "1":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "2":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "3":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        default:
+          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+          break;
+      }
+      break;
+    case "3":
+      alert("seleccione que juego quiere jugar en las siguientes opciones");
+      juego3();
+      switch (juego3) {
+        case "1":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "2":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "3":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        default:
+          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+          break;
+      }
+      break;
+    case "4":
+      alert("seleccione que juego quiere jugar en las siguientes opciones");
+      juego4();
+      
+      switch (juego4) {
+        case "1":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "2":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        case "3":
+          alert("a continuacion elija la dificultad:");
+          obtenerDificultad();
+          break;
+        default:
+          alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+          break;
+      }
+      break;
+    default:
+      alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+      break;
+  }
 }
 
+alert(`
+Nombre: ${jugador};
+
+Edad: ${edad};
+
+Juego elegido: ${juegoElegido};
+
+Dificultad: ${nivelDificultad};
+
+`);
