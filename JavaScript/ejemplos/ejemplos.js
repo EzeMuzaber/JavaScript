@@ -366,12 +366,12 @@ function iterador(arreglo , funcion){
 
 //---------------------------------------------
 
-const productos = [
+/* const productos = [
   { id:1 , nombre: "camisa", precio: 1000 },
   { id:2 , nombre: "gorra", precio: 750 },
   { id:3 , nombre: "zapato", precio: 377 },
   { id:4 , nombre: "media", precio: 150 },
-];
+]; */
 
 //metodo forEach
 
@@ -408,7 +408,7 @@ console.log(filtrados); */
 
 //OTRA FORMA DE HACERLO:
 
-let precio = Number(prompt("ingrese el precio minimo: "));
+/* let precio = Number(prompt("ingrese el precio minimo: "));
 
 const filtrados =productos.filter((item) => item.precio > precio);
 
@@ -418,43 +418,237 @@ filtrados.forEach((producto) => {
     Precio: ${producto.precio}
     `);
 });
+ */
 
+//MAP:
 
+/* const nombre = productos.map((item) => item.nombre);
+console.log(nombre);
 
+const precios = productos.map((item) => item.precio);
+console.log(precios) */
 
+/* ******para realizar un descuento mapeando */
 
+/* const descuento = productos.map((item) => {
+  return {
+    nombre: item.nombre,
+    precio: item.precio - item.precio *0.21,
+  };
+}); */
 
+/* console.log(descuento) */
 
+//EJEMPLO PARA FILTRAR Y APLICAR DESCUENTO A LOS FILTRADOS NADA MAS
 
+/* const filtrados = productos.filter((item) => item.precio > 500);
 
+const descuento = filtrados.map((item) => {
+  return {
+    id: item.id,
+    nombre: item.nombre,
+    precio: item.precio - item.precio *0.21,
+  };
+});
 
+console.log(descuento); */
 
+//METODO REDUCE:  reduce un arreglo a un solo valor
 
+/* const numeros = [4,5,6,8,10,12,16];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const total = numeros.reduce ((acum, item) => acum + item ,0);
+console.log(total); */
  
+
+
+const productos = [
+  { id:1 , nombre: "camisa", precio: 1000 },
+  { id:2 , nombre: "gorra", precio: 750 },
+  { id:3 , nombre: "zapato", precio: 377 },
+  { id:4 , nombre: "media", precio: 150 },
+];
+
+//RECORRE EL ARREGLO Y SUMA TODO EL CARRO DE COMPRAS EN UN SOLO PRECIO FINAL
+
+/* const total = productos.reduce ((acum, item) => acum + item.precio ,0);
+console.log(total); */
+ 
+//SORT: ORDENA EL ARREGLO
+
+//const numeros = [4,12,44,22,66,2,8,29];
+/* 
+console.log(numeros.sort((a,b) => a - b));
+
+console.log(numeros.sort((a,b) => b - a)); */
+
+const nombres= [
+  {name: "ezequiel", edad: 29},
+  {name: "alicia", edad: 66},
+  {name: "antonella", edad: 27},
+  {name: "walter", edad: 27},
+];
+
+/* console.log(
+  nombres.sort((a, b) => {
+    if(a.name > b.name){
+      return -1;
+    }
+    if(a.name < b.name){
+      return 1;
+    }
+
+    return 0;
+  })
+)
+ */
+
+// NUMERO MATH
+
+//MAXIMO Y MINIMO
+
+/* console.log(Math.max(1,5,8,12,44,66,77,99,12,35,6));
+console.log(Math.min(1,5,8,12,44,66,77,99,12,35,6));
+console.log(Math.max(1,5,8,12,44,Infinity,77,99,12,35,6));
+console.log(Math.min(1,5,8,12,44, -Infinity,77,99,12,35,6));
+ */
+
+//redondeos
+/* console.log(Math.ceil(3.12)); //aproxima al entero mas cercano hacia arriba
+console.log(Math.floor(3.12));//aproxima al entero mas cercano hacia abajo
+console.log(Math.round(3.7));//aproxima al entero mas cercano
+console.log(Math.round(3.4));//aproxima al entero mas cercano
+console.log(Math.sqrt(100));//aproxima al entero mas cercano */
+
+//numeros aleatorios
+/*console.log(Math.random());//numero aleatorio entre 0 y 1
+console.log(Math.random() * 10);//numero aleatorio entre 0 y 10
+console.log(Math.round(Math.random() *10));//numero aleatorio entre 0 y 1
+*/
+
+/*console.log(Math.round(Math.random() *26 + 27));//numero aleatorio entre 27 y 53
+console.log(Math.round(Math.random() *39 + 54));//numero aleatorio entre 54 y 93
+*/
+
+//funcion que retorna numeros en este caso entre 20 y 25
+
+/* const generarAleatorios = (amplitud , desplazamiento) =>{
+
+  return Math.round(Math.random() *amplitud + desplazamiento)
+};
+
+console.log(generarAleatorios(5,20));
+ */
+
+//********FUNCION PARA GENERAR NOMBRES ALEATORIOS QUE YA ESTAN ESCRITOS *********** */
+
+//***************FORMA 1:
+
+/* const nombresAleatorios = ["alex","muzamba", "aliciaa", "ezee", "antoo", "cirooo", "walooo"];
+
+const generarNombre = () =>{
+
+  let index = Math.floor(Math.random() * nombresAleatorios.length);
+
+  return nombresAleatorios[index]
+};
+
+console.log(generarNombre());
+console.log(generarNombre());
+console.log(generarNombre()); */
+
+
+//*****************FORMA 2:
+
+/* const nombresAleatorios = ["alex","muzamba", "aliciaa", "ezee", "antoo", "cirooo", "walooo"];
+
+const generarAleatorios = (amplitud , desplazamiento) =>{
+
+  return Math.floor(Math.random() *amplitud + desplazamiento);
+};
+
+const generarNombre = () =>{
+
+  let index = generarAleatorios(nombresAleatorios.length , 0);
+
+  return nombresAleatorios[index];
+};
+console.log(generarNombre());
+console.log(generarNombre());
+ */
+
+ // *********************DATE***************
+
+ //new Date(año,mes,dia,hora, minuto, segundo)
+/* 
+const navidad = new Date(2023,12,24,23,59,59);
+console.log(navidad)
+ */
+
+//const hoy = new Date("octubre 22, 2023");
+
+/* console.log(hoy.toDateString()); //sun oct 22 2023
+console.log(hoy.toLocaleString()); // 22/10/2023, 00:00:00
+console.log(hoy.toLocaleDateString());// 22/10/2023
+console.log(hoy.toTimeString()); // 00:00:00 GMT-0300 (hora estandar de argentina) */
+
+//datos especificos:
+
+/* console.log(hoy.getFullYear()); //AÑO
+console.log(hoy.getMonth()); //MES
+console.log(hoy.getDay()); //DIA DE LA SEMANA (LUNES ES 1) 
+console.log(hoy.getDate()); //DIA DEL MES */
+
+
+
+//*****FUNCION QUE RETORNA EL MES AÑO Y DIA
+
+/* const obtenerFecha = (ano,mes,dia) => {
+  return new Date(ano, mes-1, dia);
+};
+
+console.log(obtenerFecha(2023 , 10 , 22)); */
+
+
+//******RESTA DE DOS FECHAS: TIEMPO EN DIAS TOTAL DE DIFERENCIA
+
+/* const papaNoel = new Date("December 24, 2023");
+
+const ahora= new Date("october 22, 2023");
+
+console.log(papaNoel - ahora);
+
+const miliSegundosPorDia = 86400000;
+
+console.log((papaNoel - ahora)/miliSegundosPorDia); */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ***************EJEMPLO ROPA ******************** */
 /* let opcion= prompt(`
 ingrese la opcion requerida:

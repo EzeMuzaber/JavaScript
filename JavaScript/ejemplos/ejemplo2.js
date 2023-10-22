@@ -10,7 +10,7 @@ let inicio4= alert(` ahora si, comenzemos!!`);
 (apellido === "MUZABER" || apellido ==="muzaber") */
 /* PODRIA CREAR UNA VARIABLE QUE SUME EL NUMERO DE JUGADOR, 
 LO ALMACENE Y LO MUESTRE */
-let nombre, apellido;
+/* let nombre, apellido;
 let datosCorrectos = false;
 let jugador;
 while (!datosCorrectos) {
@@ -26,7 +26,7 @@ while (!datosCorrectos) {
       "Datos incorrectos. Por favor, ingrese su nombre y apellido nuevamente."
     );
   }
-}
+} */
 
 let opcion;
 let edadJugador;
@@ -34,7 +34,7 @@ let juegoElegido;
 let nivelDificultad;
 
 //-----------FUNCIONES--------------
-function obtenerDificultad() {
+/* function obtenerDificultad() {
   let dificultad = prompt(`
   1. Facil
   2. Medio
@@ -54,9 +54,9 @@ function obtenerDificultad() {
       alert("Dificultad incorreta. Vuelva a intentarlo");
       obtenerDificultad();
   }
-}
+} */
 
-function obtenerJuego1() {
+/* function obtenerJuego1() {
   switch (juego1) {
     case "1":
       alert("Eligio: Talking Tom: ¡A por el oro!");
@@ -90,7 +90,7 @@ function juego3() {
 
     3. Candy Crush.
   `);
-}
+} */
 /* function juego4() {
   juego4 = prompt(`
     1. World of warships.

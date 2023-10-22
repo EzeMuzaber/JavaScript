@@ -6,12 +6,12 @@ let edadSeleccionada = "";
 let juegoSeleccionado = "";
 let dificultadSeleccionada = "";
 
-let inicio = alert(" Bienvenidos al inicio del juego");
+/* let inicio = alert(" Bienvenidos al inicio del juego");
 let inicio2 = alert(`a continuacion, vera una serie de preguntas para 
 orientarlo a que juego seria el adecuado para usted`);
 let incio3= alert(`Porfavor, preste mucha atencion!!!  
 Si usted desea salir del juego escriba la palabra "salir"`);
-let inicio4= alert(` ahora si, comenzemos!!`);
+let inicio4= alert(` ahora si, comenzemos!!`); */
 
 while (!datosCorrectos) {
     nombre = prompt("Porfavor ingrese su nombre: ");
@@ -27,8 +27,52 @@ while (!datosCorrectos) {
         );
     }
 }
-while (opcion === undefined || opcion.toLocaleLowerCase() !== "salir") {
-  
+/* ACA TENDRIA QUE IR UNA OPCION QUE NOS DIGA 
+SI QUEREMOS VER LOS JUEGOS O SI QUEREMOS COMPRAR,
+SEGUN LA OPCION ES PARA DONDE VA.
+SI EL USUARIO VA A COMPRAR:
+PODER PONER UNA OPCION CON LO QUE HAY Y EL PRECIO 
+Y QUE TAMBIEN LO PUEDA BUSCAR SI DESEA
+
+ */
+while (opcionPrincipal.toLowerCase() !== "salir" ){
+    
+    opcionPrincipal= prompt (`
+    que desea hacer?
+
+    a: Buscar un producto.
+
+    b: Realizar una compra.
+
+    c: ver los juegos segun edades.
+
+    `)
+
+    switch(opcionPrincipal){
+        case "a":
+            nombreProducto = prompt("ingrese el producto a buscar: ");
+            
+            let productos = [
+                { id: 1, nombre: "Fornite", precio: 1500 },
+                { id: 2, nombre: "Pokemon GO", precio: 2200 },
+                { id: 3, nombre: "Clash royale", precio: 950 },
+                { id: 4, nombre: "battle royale", precio: 920 },
+                { id: 5, nombre: "Star wars: knights of the old republic", precio: 2500 },
+                { id: 6, nombre: "GTA IV", precio: 4000 },
+                { id: 7, nombre: "Candy crush", precio: 1100 },
+            ];
+            while (productos != "salir") {
+                let producto = encontrarProductos(nombre);
+                mostrarProducto(producto);
+
+                nombreProducto = prompt("ingrese el producto a buscar: ");
+            };
+    }
+}
+
+
+while (opcion === undefined || opcion.toLocaleLowerCase() != "salir") {
+
     opcion = prompt(`
         ingrese su edad:
 
@@ -38,7 +82,7 @@ while (opcion === undefined || opcion.toLocaleLowerCase() !== "salir") {
 
         3. 19 años o mas.
         
-        Escriba "Salir" para salir del programa
+        Escriba "salir" para salir del programa
     `);
     switch (opcion) {
         case "1":
@@ -89,6 +133,28 @@ while (opcion === undefined || opcion.toLocaleLowerCase() !== "salir") {
         }
 
     /* --------------------   FUNCIONES  ----------------------------------*/
+    
+    const mostrarProducto = (producto) => {
+        if (producto) {
+            alert(`
+        Id: ${producto.id}.
+        Nombre: ${producto.nombre}.
+        Precio: $${producto.precio}. 
+        `);
+        } else {
+            alert("Producto no encontrado");
+        }
+    
+    };
+    
+    const encontrarProductos = nombre => {
+        return productos.find(item => item.nombre === nombre);
+    };
+    
+    
+    
+    
+    
     function solicitarOpcion1() {
         let opcion1 = prompt(`seleccione el juego en las opciones: 
 
