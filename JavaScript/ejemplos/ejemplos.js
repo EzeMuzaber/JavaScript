@@ -462,12 +462,12 @@ console.log(total); */
  
 
 
-const productos = [
+/* const productos = [
   { id:1 , nombre: "camisa", precio: 1000 },
   { id:2 , nombre: "gorra", precio: 750 },
   { id:3 , nombre: "zapato", precio: 377 },
   { id:4 , nombre: "media", precio: 150 },
-];
+]; */
 
 //RECORRE EL ARREGLO Y SUMA TODO EL CARRO DE COMPRAS EN UN SOLO PRECIO FINAL
 

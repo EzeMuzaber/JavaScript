@@ -35,9 +35,9 @@ PODER PONER UNA OPCION CON LO QUE HAY Y EL PRECIO
 Y QUE TAMBIEN LO PUEDA BUSCAR SI DESEA
 
  */
-while (opcionPrincipal.toLowerCase() !== "salir" ){
-    
-    opcionPrincipal= prompt (`
+while (opcionPrincipal.toLowerCase() != "salir") {
+
+    opcionPrincipal = prompt(`
     que desea hacer?
 
     a: Buscar un producto.
@@ -48,10 +48,10 @@ while (opcionPrincipal.toLowerCase() !== "salir" ){
 
     `)
 
-    switch(opcionPrincipal){
+    switch (opcionPrincipal) {
         case "a":
             nombreProducto = prompt("ingrese el producto a buscar: ");
-            
+
             let productos = [
                 { id: 1, nombre: "Fornite", precio: 1500 },
                 { id: 2, nombre: "Pokemon GO", precio: 2200 },
@@ -114,9 +114,9 @@ while (opcion === undefined || opcion.toLocaleLowerCase() != "salir") {
         default:
             alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
             break;
-        }
-        
-        alert(`
+    }
+
+    alert(`
         Nombre: ${jugador};
 
         Edad: ${edadSeleccionada};
@@ -125,38 +125,36 @@ while (opcion === undefined || opcion.toLocaleLowerCase() != "salir") {
 
         Dificultad: ${dificultadSeleccionada};
         `);
-        juegoSeleccionado = "";
-    
-    }
-    if (opcion.toLocaleLowerCase() !== "salir") {
-            
-        }
+    juegoSeleccionado = "";
 
-    /* --------------------   FUNCIONES  ----------------------------------*/
-    
-    const mostrarProducto = (producto) => {
-        if (producto) {
-            alert(`
+}
+if (opcion.toLocaleLowerCase() !== "salir") {
+
+}
+
+/* --------------------   FUNCIONES  ----------------------------------*/
+
+const mostrarProducto = (producto) => {
+    if (producto) {
+        alert(`
         Id: ${producto.id}.
         Nombre: ${producto.nombre}.
         Precio: $${producto.precio}. 
         `);
-        } else {
-            alert("Producto no encontrado");
-        }
-    
-    };
-    
-    const encontrarProductos = nombre => {
-        return productos.find(item => item.nombre === nombre);
-    };
-    
-    
-    
-    
-    
-    function solicitarOpcion1() {
-        let opcion1 = prompt(`seleccione el juego en las opciones: 
+    } else {
+        alert("Producto no encontrado");
+    }
+
+};
+
+const encontrarProductos = nombre => {
+    return productos.find(item => item.nombre === nombre);
+};
+
+
+
+function solicitarOpcion1() {
+    let opcion1 = prompt(`seleccione el juego en las opciones: 
 
         1. Talking Tom: ¡A por el oro!.
 
@@ -164,84 +162,85 @@ while (opcion === undefined || opcion.toLocaleLowerCase() != "salir") {
 
         3. Clash Royale.
         ` );
-        switch (opcion1) {
-            case "1":
-                return "Talking Tom: ¡A por el oro!";
-            case "2":
-                return "Stumble guys";
-            case "3":
-                return "Clash Royale";
-            default:
-                alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-                solicitarOpcion1();
-                break;
-        }
+    switch (opcion1) {
+        case "1":
+            return "Talking Tom: ¡A por el oro!";
+        case "2":
+            return "Stumble guys";
+        case "3":
+            return "Clash Royale";
+        default:
+            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+            solicitarOpcion1();
+            break;
     }
-    function solicitarOpcion2() {
-        let opcion2 = prompt(`
+}
+function solicitarOpcion2() {
+    let opcion2 = prompt(`
         1. Battle royale.
 
         2.Fornite.
 
         3. pokemon GO.
         `);
-        switch (opcion2) {
-            case "1":
-                return "Battle royale";
-            case "2":
-                return "Fornite";
+    switch (opcion2) {
+        case "1":
+            return "Battle royale";
+        case "2":
+            return "Fornite";
 
-            case "3":
-                return "Pokemon GO";
-            default:
-                alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-                solicitarOpcion2();
-                break;
+        case "3":
+            return "Pokemon GO";
+        default:
+            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+            solicitarOpcion2();
+            break;
 
-        }
     }
-    
-    function solicitarOpcion3() {
-        let opcion3 = prompt(`
+}
+
+function solicitarOpcion3() {
+    let opcion3 = prompt(`
         1. Star Wars: Knights of the Old Republic.
 
         2. GTA IV.
 
         3. Candy Crush.
         `);
-        switch (opcion3) {
-            case "1":
-                return "Star Wars: Knights of the Old Republic";
+    switch (opcion3) {
+        case "1":
+            return "Star Wars: Knights of the Old Republic";
 
-            case "2":
-                return "GTA IV";
+        case "2":
+            return "GTA IV";
 
-            case "3":
-                return "Candy Crush";
+        case "3":
+            return "Candy Crush";
 
-            default:
-                alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-                solicitarOpcion3();
-                break;
-        }
+        default:
+            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
+            solicitarOpcion3();
+            break;
     }
-    function obtenerDificultad() {
-        let dificultad = prompt(`
+}
+function obtenerDificultad() {
+    let dificultad = prompt(`
         1. Facil
         2. Medio
         3. Dificil
         `);
-        switch (dificultad) {
-            case "1":
-                return "FACIL";
-            case "2":
-                return "MEDIO";
-            case "3":
-                return "DIFICIL";
-            default:
-                alert("Dificultad incorreta. Vuelva a intentarlo");
-                obtenerDificultad();
-                break;
-        }
+    switch (dificultad) {
+        case "1":
+            return "FACIL";
+        case "2":
+            return "MEDIO";
+        case "3":
+            return "DIFICIL";
+        default:
+            alert("Dificultad incorreta. Vuelva a intentarlo");
+            obtenerDificultad();
+            break;
     }
+}
+
 

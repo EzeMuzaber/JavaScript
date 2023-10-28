@@ -33,7 +33,7 @@ const encontrarProductos = nombre => {
     return productos.find(item => item.nombre === nombre);
 };
 
-//funcion pñara mostrar si existe y si no mostrar un mensaje correspondiente
+//funcion para mostrar si existe y si no mostrar un mensaje correspondiente
 const mostrarProducto = (producto) => {
     if (producto) {
         alert(`
@@ -51,7 +51,7 @@ const mostrarProducto = (producto) => {
 let nombre = prompt("ingrese el producto a buscar: ");
 
 //mientras que nombre sea diferente de salir todo se ejecuta normalmente
-while (nombre != "salir") {
+while (nombre !== "salir") {
     //buscamos el producto
     let producto = encontrarProductos(nombre);
     //mostramos el producto
@@ -60,4 +60,4 @@ while (nombre != "salir") {
     //volvemos a pedir el nombre del producto
     nombre = prompt("ingrese el producto a buscar: ");
 };
-alert("Gracias por su visita, vuelva pronto!!")
+alert("Gracias por su visita, vuelva pronto!!") 
