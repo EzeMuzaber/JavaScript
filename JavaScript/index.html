@@ -4,14 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="ejemplos/style.css">
 </head>
 <body>
-    
+  <!--   <div id ="aplicacion">
+        <p id="parrafo">HOLA MUNDO!!!!</p>
+    </div> -->
 
-<script src="./main.js"></script>
+<!--  <ul>
+        <li class="perritos">Zeus</li>
+        <li class="perritos">Max</li>
+        <li class="perritos">Firu</li>
+    </ul>
+
+    <div>
+        <div>parte 1</div>
+        <div>parte 2</div>
+    </div> -->
+<!--  
+<div id="contenedor"></div>
+<div id="saludar">Hola a todos!</div> -->
+
+<!-- CLASE 10!!!! -->
+<!-- <h2 id="saludo">Hola a todos!!!!</h2>
+<p> Bienvenido a la pagina!!</p>
+<p>seleccione la opcion que desea:</p> -->
+<!-- <button>Mostrar Productos</button> -->
+
+<!-- <input type="text" id="nombre">
+<button id="click">Click</button>
+
+<form id="formulario">
+    <input type="text">
+    <input type="number">
+    <input type="submit" value="Enviar">
+</form>
+ -->
+<!-- <div id="arranque"></div> -->
+<!-- <form id="formulario">
+    <label for="nombre">Nombre: </label>
+    <input type="text" id="nombre" required>
+    <button id="click">Click</button> 
+</form> -->
+<!-- 
+    <label for="apellido">Apellido: </label>
+    <input type="text" id="apellido" required>
+
+    <button type="submit">Iniciar</button>
+    <button id="eliminar">Eliminar Formulario</button>
+</form> -->
+
+<div id="menu">
+    <button onclick="mostrarOpciones()">Menu</button>
+    <ul id="opciones" style="display:none;">
+        <li>
+            <a href="#" onclick="mostrarProductos()">Buscar Productos</a>
+        </li>
+        <li>
+            <a href="#" onclick="mostrarCarrito()">Ver carrito</a>
+        </li>
+        <li>
+            <a href="#" onclick="realizarPago()">Realizar pago</a>
+        </li>
+        </li>
+        <li>
+            <a href="#" onclick="juegosPorEdades()">Ver juegos por edades.</a>
+        </li>
+       
+    </ul>
+</div>
+
+
+<ul id="listaProductos"></ul>
+
+<div id="carrito" style="display:none;">
+    <h2>Carrito de compras</h2>
+    <ul id="carritoLista"></ul>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+</div>
+
+<div id="pago" style="display:none;">
+    <h2>Realizar pago</h2>
+    <label>
+        <input type="radio" name="metodoPago" value="efectivo">Efectivo
+    </label>
+    <label>
+        <input type="radio" name="metodoPago" value="tarjeta">Tarjeta
+    </label>
+
+    <button onclick=calcularTotal()>Calcular Total</button>
+    <p id="totalPagar"></p>
+    <button onclick="reiniciarTodo()">Reiniciar todo</button>
+</div>
+
+
+<!-- <script src="./main.js"></script> -->
+<script src="./main2.js"></script>
 <!-- <script src="./entrega1.js"></script>-->
 <!-- <script src="./ejemplos/ejemplos.js"></script> -->
 <!-- <script src="./ejemplos/ejemplo2.js"></script> -->
 <!-- <script src="./ejemplos/ejemplo3.js"></script> -->
+<!-- <script src="./ejemplos/ejemplos4.js"></script> -->
+<!-- <script src="./ejemplos/ejemplos5.js"></script> -->
 </body>
 </html>

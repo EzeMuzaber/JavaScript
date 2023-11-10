@@ -7,9 +7,9 @@ let producto;
 let opcionPrincipal;
 let opcion;
 
-let inicio = alert("Bienvenido al menu interactivo de juegos");
+/* let inicio = alert("Bienvenido al menu interactivo de juegos");
 let inicio2 = alert("Por favor, preste atencion a las opciones de juegos, compra y busqueda.");
-let inicio3 = alert(" buena suerte!!");
+let inicio3 = alert(" buena suerte!!"); */
 
 // 1: bienvenida y pedir datos al usuario
 while (!datosCorrectos) {

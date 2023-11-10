@@ -622,7 +622,7 @@ const miliSegundosPorDia = 86400000;
 
 console.log((papaNoel - ahora)/miliSegundosPorDia); */
 
-
+/*  CLASE 9 DOM */
 
 
 

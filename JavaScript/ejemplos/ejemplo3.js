@@ -34,7 +34,7 @@ const encontrarProductos = nombre => {
 };
 
 //funcion para mostrar si existe y si no mostrar un mensaje correspondiente
-const mostrarProducto = (producto) => {
+c/* onst mostrarProducto = (producto) => {
     if (producto) {
         alert(`
     Id: ${producto.id}.
@@ -45,7 +45,7 @@ const mostrarProducto = (producto) => {
         alert("Producto no encontrado");
     }
 
-};
+}; */
 
 //pedimos el nombre del producto a mostrar
 let nombre = prompt("ingrese el producto a buscar: ");
