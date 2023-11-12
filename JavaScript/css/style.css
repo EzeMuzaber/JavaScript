@@ -1,0 +1,91 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 20px;
+}
+
+.titulo{
+        text-align: center;
+        color: #333;
+    }
+.parrafo{
+        text-align: center;
+        color:#666;
+    }
+#menu {
+    margin: 50px 10px 10px 10px;
+}
+button{
+    background-color: #4285f4;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    border:none;
+}
+
+#opciones{
+    list-style-type: none;
+    font-size:20px;
+    padding: 10px;
+    margin: 5px;
+}
+#opciones a{
+    text-decoration: none;
+    color: #4285f4
+}
+
+#carrito h2 {
+    color: #4285f4;
+}
+
+#carritoLista {
+    list-style-type: none;
+    padding: 0;
+}
+
+#carritoLista li {
+    margin: 20px;
+}
+
+#pago h2 {
+    color: #4285f4;
+}
+
+#totalPagar {
+    font-weight: bold;
+    margin-top: 10px;
+}
+#listaProductos{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap:20px; 
+    padding: 0;
+    list-style-type: none;
+    padding: 0;
+}
+#listaProductos li {
+    border: 4px solid #dee2e6; 
+    background-color: #dee2e6;
+    border-radius: 15px; 
+    padding: 5px; 
+    margin: 15px;
+    width: calc(28% - 15px);
+    box-sizing: border-box; /
+}
+#listaProductos button {
+    background-color: #28a745; /* Color de fondo para los botones */
+    color: #fff; /* Color de texto para los botones */
+    border: none;
+    padding: 3px;
+    margin-top: 6px;
+    
+    cursor: pointer;
+}
+
+.agregar-carrito {
+    background-color: #4285f4;
+}

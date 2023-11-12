@@ -1,377 +1,279 @@
-
-//declaracion de variables
-let nombre, apellido;
-let datosCorrectos = false;
-let jugador;
-let producto;
-let opcionPrincipal;
-let opcion;
-
-/* let inicio = alert("Bienvenido al menu interactivo de juegos");
-let inicio2 = alert("Por favor, preste atencion a las opciones de juegos, compra y busqueda.");
-let inicio3 = alert(" buena suerte!!"); */
-
-// 1: bienvenida y pedir datos al usuario
-while (!datosCorrectos) {
-    nombre = prompt("Porfavor ingrese su nombre: ");
-    apellido = prompt("ingrese su apellido: ");
-
-    if (nombre !== "" && apellido !== "") {
-        datosCorrectos = true;
-        jugador = nombre + " " + apellido;
-        alert(`Hola, ${jugador}, le damos la bienvenida!!`);
-    } else {
-        alert(
-            "Datos incorrectos. Por favor, ingrese su nombre y apellido nuevamente."
-        );
-    }
+function mostrarOpciones() {
+    const opciones = document.getElementById("opciones");
+    opciones.style.display = opciones.style.display === "none" ? "block" : "none";
 }
-opcionPrincipal = "";
-let programaActivo = true;
 
-//primer menu interactivo
-while (programaActivo) {
+const productos = [
+    { id: 1, nombre: "Fornite", precio: 2300 },
+    { id: 2, nombre: "Pokemon go", precio: 2500 },
+    { id: 3, nombre: "Clash royale", precio: 1500 },
+    { id: 4, nombre: "Uno", precio: 910 },
+    { id: 5, nombre: "Call of duty", precio: 8000 },
+    { id: 6, nombre: "Gta iv", precio: 8000 },
+    { id: 7, nombre: "Candy crush", precio: 1100 },
+    { id: 8, nombre: "Roblox", precio: 3000 },
+    { id: 9, nombre: "Rocket League", precio: 2200 },
+    { id: 10, nombre: "Left for dead 2", precio: 1500 },
+    { id: 11, nombre: "Los Sims", precio: 1900 },
+    { id: 12, nombre: "League of Legends", precio: 2500 },
+    { id: 13, nombre: "Battlefield V", precio: 5500 },
+];
 
-    opcionPrincipal = prompt(`
-    
-    ¿que desea hacer?
+let carrito = [];
+// Limpiar la lista antes de mostrar los productos
+function mostrarProductos() {
+    const listaProductos = document.getElementById("listaProductos");
+    listaProductos.innerHTML = "";
 
-    a: Buscar un producto.
-
-    b: Realizar una compra.
-
-    c: ver los juegos segun edades.
-
-    Escriba "salir" para finalizar el programa
-
-    `).toLowerCase();
-
-    const productos = [
-        { id: 1, nombre: "fornite", precio: 1500 },
-        { id: 2, nombre: "pokemon go", precio: 2200 },
-        { id: 3, nombre: "clash royale", precio: 950 },
-        { id: 4, nombre: "uno", precio: 910 },
-        { id: 5, nombre: "call of duty", precio: 2500 },
-        { id: 6, nombre: "gta iv", precio: 4000 },
-        { id: 7, nombre: "candy crush", precio: 1100 },
-    ];
-    const encontrarProductos = nombre => {
-        return productos.find(item => item.nombre === nombre);
-    };
-    const encontrarProductosPorID = id => {
-        return productos.find(item => item.id === id);
-    };
-    const mostrarProducto = (productos) => {
-        if (productos) {
-            alert(`
-                Id: ${productos.id}.
-                Nombre: ${productos.nombre}.
-                Precio: $${productos.precio}. 
-                `);
-        } else {
-            alert("Producto no encontrado");
-        }
-    };
-
-    let listaProductos = "";
-    let resumenCompra = "";
-    let total = 0;
-    opcionSalir = true;
     productos.forEach(producto => {
-        listaProductos +=
-            `ID: ${producto.id}, 
-        Nombre: ${producto.nombre}, 
-        Precio: $${producto.precio}\n`;
+        const li = document.createElement("li");
+        li.textContent = `
+        Id: ${producto.id},
+        Nombre: ${producto.nombre},
+        Precio: $${producto.precio}
+        `;
+
+        //agregamos un boton para agregar el producto al carrito
+        const agregarBtn = document.createElement("button");
+        agregarBtn.textContent = "agregar al carrito";
+        agregarBtn.addEventListener("click", () => agregarAlCarrito(producto));
+
+        li.appendChild(agregarBtn);
+
+        listaProductos.appendChild(li);
     });
-    switch (opcionPrincipal) {
-        //caso a: busqueda de producto
-        case "a":
-            alert(`juegos disponibles:
-            fornite.
-            pokemon go.
-            clash royale.
-            uno.
-            call of duty.
-            gta iv.
-            candy crush.
-            `)
-            let nombreProducto = prompt("ingrese el producto a buscar: ");
-            encontrarProductos();
+}
 
-            while (nombreProducto.toLowerCase() !== "salir") {
-                let producto = encontrarProductos(nombreProducto);
-                mostrarProducto(producto);
-                alert(`juegos disponibles:
-                fornite.
-                pokemon go.
-                clash royale.
-                uno.
-                call of duty.
-                gta iv.
-                candy crush.
-                `)
-                nombreProducto = prompt("ingrese el producto a buscar: ");
-            };
-            break;
+function agregarAlCarrito(producto) {
+    carrito.push(producto);
+    mostrarCarrito();
 
-        //simulacion de compra con descuento
-        case "b":
-            const carrito = [];
-            let compra = true;
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Producto "${producto.nombre}" agregado al carrito`,
+        showConfirmButton: false,
+        timer: 1800
+    });
 
-            alert("Lista de productos disponibles:\n" + listaProductos);
+}
 
-            while (compra) {
-                const idProducto = parseInt(prompt("Ingrese el ID del producto a comprar (o escriba '0' para finalizar la compra):"));
+function mostrarCarrito() {
+    const carritoLista = document.getElementById("carritoLista");
+    carritoLista.innerHTML = "";
 
-                if (idProducto === 0) {
-                    compra = false;//usuario finalizando la compra si pone 0
-                } else {
-                    const productoEncontrado = encontrarProductosPorID(idProducto);
-                    if (productoEncontrado) {
-                        carrito.push(productoEncontrado);
-                        alert(`Producto agregado al carrito: ${productoEncontrado.nombre}`);
-                    } else {
-                        alert("Producto no encontrado. Por favor, ingrese un ID válido.");
-                    }
-                    alert("Lista de productos disponibles:\n" + listaProductos);
-                }
-            }
+    carrito.forEach(producto => {
+        const li = document.createElement("li");
+        li.textContent = `
+        Nombre: ${producto.nombre},
+        Precio: ${producto.precio}
+        `;
+        carritoLista.appendChild(li);
+    });
 
-            // Verificar si el carrito está vacío
-            if (carrito.length === 0) {
-                alert("No hay productos en el carrito. Debe agregar al menos un producto antes de pagar.");
-                continue;
-            }
+    document.getElementById("carrito").style.display = "block";
+}
 
-            // Calcular el total de la compra
-            total = 0;
-            carrito.forEach(producto => {
-                total += producto.precio;
+function vaciarCarrito() {
+    const productosEliminados = carrito.slice(); // Copia de la lista de productos en el carrito
+    carrito = [];
+    mostrarCarrito();
+
+    if (productosEliminados.length > 0) {
+        const productosEliminadosTexto = productosEliminados.map(producto => producto.nombre).join(", ");
+        Swal.fire(`Productos eliminados: ${productosEliminadosTexto}`);
+
+    } else {
+        
+        Swal.fire("El carrito ya estaba vacío.");
+
+    }
+}
+
+function reiniciarTodo() {
+
+    // Ocultar el carrito, la sección de pago y la lista de productos
+    document.getElementById("carrito").style.display = "none";
+    document.getElementById("pago").style.display = "none";
+    document.getElementById("listaProductos").innerHTML = "";
+
+    //limpia el carrito y restablece el total a pagar
+    carrito = [];
+    document.getElementById("totalPagar").textContent = "";
+
+    //cerrar el menu despues de seleccionar una opcion
+    document.getElementById("opciones").style.display = "none";
+}
+
+function realizarPago() {
+    document.getElementById("carrito").style.display = "block";
+    document.getElementById("pago").style.display = "block";
+}
+
+
+function comprar() {
+    realizarPago();
+}
+function calcularTotal() {
+
+    const metodoPago = document.querySelector('input[name="metodoPago"]:checked');
+
+    if (metodoPago) {
+        const total = carrito.reduce((acc, producto) => acc + producto.precio, 0);
+        const factor = (metodoPago.value === "tarjeta") ? 1.10 : 0.95;
+        const totalPagar = (total * factor).toFixed(2);
+
+        document.getElementById("totalPagar").textContent = `Total a pagar: $${totalPagar}`;
+    } else {
+        Swal.fire("Selecciona un método de pago antes de calcular el total.");
+    }
+}
+
+
+let resumenCompra = "";
+
+function finalizarCompra() {
+    const metodoPago = document.querySelector('input[name="metodoPago"]:checked');
+
+    if (!metodoPago) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecciona un método de pago antes de finalizar la compra.',
+        })
+        return;
+    }
+
+    const total = carrito.reduce((acc, producto) => acc + producto.precio, 0);
+    let recargo = 0.0;
+    let descuento = 0.0;
+
+    metodoPago.value === "tarjeta" ? recargo = 0.10 : descuento = 0.05;
+
+    const importeFinal = (total * (1 + recargo - descuento)).toFixed(2);
+
+    const contenidoHTML = `
+        <div>
+            <p><strong>Resumen de compra:</strong></p>
+            <p>Productos:</p>
+            <ul>
+                ${carrito.map(producto => `
+                <li>
+                    ${producto.nombre} -
+                    $${producto.precio}
+                </li>`).join('')}
+            </ul>
+            <p>Metodo de Pago: ${metodoPago.value}</p>
+            ${recargo > 0 ? `<p>Recargo: ${recargo * 100}%</p>` : ''}
+            ${descuento > 0 ? `<p>Descuento: ${descuento * 100}%</p>` : ''}
+            <p>Importe Final: $${importeFinal}</p>
+        </div>
+    `;
+    Swal.fire({
+        icon: 'info',
+        title: 'Resumen de la compra',
+        html: contenidoHTML,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Finalizar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Compra Finalizada!",
+                text: "Gracias por su compra!.",
+                icon: "success"
             });
+            reiniciarTodo();
+        }
+    });
+};
 
-            // Mostrar el resumen de la compra en un alert
-            resumenCompra = "resumen de la compra: ";
-            carrito.forEach(producto => {
-                resumenCompra +=
-                    `\n
-                Nombre: ${producto.nombre}\n
-                Precio: $${producto.precio}\n`;
+const juegosPorEdades = {
+    1: [
+        { id: 1, nombre: "Fornite", precio: 2300 },
+        { id: 2, nombre: "Uno", precio: 910 },
+        { id: 3, nombre: "Los Sims", precio: 1900 },
+        { id: 4, nombre: "Pokemon go", precio: 2500 },
+    ],
+    2: [
+        { id: 1, nombre: "Clash royale", precio: 1500 },
+        { id: 2, nombre: "League of Legends", precio: 2500 },
+        { id: 3, nombre: "Candy crush", precio: 1100 },
+        { id: 4, nombre: "Roblox", precio: 3000 },
+    ],
+    3: [
+        { id:1,  nombre: "Rocket League", precio: 2200 },
+        { id:2 , nombre: "Left for dead 2", precio: 1500 },
+        { id:3,  nombre: "Battlefield V", precio: 5500 },
+        { id:4, nombre: "Gta iv", precio: 8000 },
+        { id:5, nombre: "Call of duty", precio: 8000 },
+    ]};
+
+document.getElementById("verJuegosPorEdades").addEventListener("click", mostrarOpciones);
+
+function verJuegosPorEdades() {
+    const opciones = {
+        1: "Menores de 12 años",
+        2: "Entre 13 y 18 años",
+        3: "19 años o mas"
+    };
+
+    const seleccionEdad =prompt(`
+    Seleccione la opcion de edad: \n\n
+    1: ${opciones[1]}\n
+    2: ${opciones[2]}\n
+    3: ${opciones[3]}\n
+    `);
+
+    if (seleccionEdad in juegosPorEdades) {
+        const juegos = juegosPorEdades[seleccionEdad];
+
+        if (juegos.length > 0) {
+
+            let mensajeJuegos =
+                `<div>
+            <p><strong>Juegos:</strong></p>`;
+            juegos.forEach(juego => {
+                mensajeJuegos += ` 
+                <p>${juego.nombre} -
+                Precio: $${juego.precio},</p>`;
             });
+            mensajeJuegos += '</div>';
 
-            resumenCompra += `Total a pagar: $${total}`;
-            alert(resumenCompra);
-
-            let opcionPago = "";
-
-            while (opcionPago !== "1" && opcionPago !== "2" && opcionPago !== "3") {
-                opcionPago = prompt(`
-            como desea abonar?
-
-            1: efectivo con un 15% de descuento
-
-            2: tarjeta con un 10% de recargo
-
-            3: Volver al menu principal
-            `)
-                switch (opcionPago) {
-                    case "1":
-                        total *= 0.85;
-                        alert(`
-                    Total a pagar con descuento (efectivo)
-                    para ${carrito.map(producto => producto.nombre).join(', ')}:
-                    $${total.toFixed(2)}`);
-                        break;
-                    case "2":
-                        total *= 1.1;
-                        alert(`
-                    Total a pagar con recargo (tarjeta)
-                    para ${carrito.map(producto => producto.nombre).join(', ')}:
-                    $${total.toFixed(2)}`)
-                        break;
-                    case "3":
-                        compra = false;
-                        break;
-                    default:
-                        alert("Opción incorrecta. Por favor, elija 1, 2 o 3 o 'salir'.");
-                        break;
-                }
-                alert("Compra finalizada. Gracias por su compra.");
-            }
-            break;
-
-        case "c":
-            while (opcion === undefined || opcion.toLocaleLowerCase() != "volver") {
-
-                opcion = prompt(`
-                    ingrese su edad:
-            
-                    1. menor de 12 años.
-            
-                    2. entre 13 y 18 años.
-            
-                    3. 19 años o mas.
-                    
-                    Escriba "volver" para regresar al menu principal
-                `);
-                switch (opcion) {
-                    case "1":
-                        edadSeleccionada = "Menor de 12 años";
-                        juegoSeleccionado = solicitarOpcion1();
-
-                        alert("a continuacion elija la dificultad:");
-                        dificultadSeleccionada = obtenerDificultad();
-                        break;
-                    case "2":
-                        edadSeleccionada = "Entre 13 y 18 años";
-                        juegoSeleccionado = solicitarOpcion2();
-
-                        alert("a continuacion elija la dificultad:");
-                        dificultadSeleccionada = obtenerDificultad();
-                        break;
-                    case "3":
-                        edadSeleccionada = "19 años o  mas"
-                        juegoSeleccionado = solicitarOpcion3();
-
-                        alert("a continuacion elija la dificultad:");
-                        dificultadSeleccionada = obtenerDificultad();
-                        break;
-
-                    case "volver":
-                        break;
-
-                    default:
-                        alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-                        break;
-                }
-
-                alert(`
-                    Nombre: ${jugador};
-            
-                    Edad: ${edadSeleccionada};
-            
-                    Juego elegido: ${juegoSeleccionado};
-            
-                    Dificultad: ${dificultadSeleccionada};
-                    `);
-                juegoSeleccionado = "";
-
-            }
-            break;
-
-        case "salir":
-            let opcionSalir = prompt(`
-                ¿Desea salir del programa?
-                1: Salir
-                2: Volver al menú principal
-            `)
-            switch (opcionSalir) {
-                case "1":
-                    alert("Saliendo del programa. ¡Hasta luego!");
-                    programaActivo = false;
-                    break;
-                case "2":
-                    // No es necesario hacer nada aquí, el bucle continuará
-                    break;
-                default:
-                    alert("Opción incorrecta. Por favor, elija 1 o 2.");
-            }
-            //programaActivo= false;
-            break;
-
-        default:
-            alert("Opción incorrecta. Por favor, vuelva a intentarlo.");
-            break;
-    }
+            swal.fire({
+                icon: 'info',
+                title: `Juegos: ${opciones[seleccionEdad]}`,
+                html: mensajeJuegos,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+                showCancelButton: false,
+            });
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: 'Sin juegos disponibles',
+                text: 'No hay juegos disponibles para la opción seleccionada.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+                showCancelButton: false,
+            });
+        }
+    } else if (seleccionEdad) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Opción de edad no válida',
+            text: 'Por favor, seleccione una opción de edad válida.',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK',
+            showCancelButton: false,
+        });
+    };
 }
 
-/* --------------------   FUNCIONES  ----------------------------------*/
-function solicitarOpcion1() {
-    let opcion1 = prompt(`seleccione el juego en las opciones: 
 
-        1. Talking Tom: ¡A por el oro!.
 
-        2. Stumble guys.
-
-        3. Clash Royale.
-        ` );
-    switch (opcion1) {
-        case "1":
-            return "Talking Tom: ¡A por el oro!";
-        case "2":
-            return "Stumble guys";
-        case "3":
-            return "Clash Royale";
-        default:
-            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-            solicitarOpcion1();
-            break;
-    }
-}
-function solicitarOpcion2() {
-    let opcion2 = prompt(`
-        1. Battle royale.
-
-        2.Fornite.
-
-        3. pokemon GO.
-        `);
-    switch (opcion2) {
-        case "1":
-            return "Battle royale";
-        case "2":
-            return "Fornite";
-
-        case "3":
-            return "Pokemon GO";
-        default:
-            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-            solicitarOpcion2();
-            break;
-
-    }
-}
-
-function solicitarOpcion3() {
-    let opcion3 = prompt(`
-        1. Star Wars: Knights of the Old Republic.
-
-        2. GTA IV.
-
-        3. Candy Crush.
-        `);
-    switch (opcion3) {
-        case "1":
-            return "Star Wars: Knights of the Old Republic";
-
-        case "2":
-            return "GTA IV";
-
-        case "3":
-            return "Candy Crush";
-
-        default:
-            alert("Opcion incorrecta!!!! porfavor vuelva a intentarlo!!");
-            solicitarOpcion3();
-            break;
-    }
-}
-function obtenerDificultad() {
-    let dificultad = prompt(`
-        1. Facil
-        2. Medio
-        3. Dificil
-        `);
-    switch (dificultad) {
-        case "1":
-            return "FACIL";
-        case "2":
-            return "MEDIO";
-        case "3":
-            return "DIFICIL";
-        default:
-            alert("Dificultad incorreta. Vuelva a intentarlo");
-            obtenerDificultad();
-            break;
-    }
-}
+function mostrarOpciones() {
+    const opciones = document.getElementById("opciones");
+    opciones.style.display = opciones.style.display === "none" ? "block" : "none";
+};
