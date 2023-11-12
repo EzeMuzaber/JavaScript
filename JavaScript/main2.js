@@ -35,24 +35,27 @@ function mostrarProductos() {
 
         listaProductos.appendChild(li);
     });
-
-    //document.getElementById("opciones").style.display = "none";
 }
 
 function agregarAlCarrito(producto){
-    //const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
     carrito.push(producto);
     mostrarCarrito();
-    //localStorage.setItem("carrito",JSON.stringify(carrito));
     
-    //cambiar este alert por el que explico en la clase 13
-    alert(`Producto "${producto.nombre}" agregado al carrito`);
+    //Swal.fire(`Producto "${producto.nombre}" agregado al carrito`);
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Producto "${producto.nombre}" agregado al carrito`,
+        showConfirmButton: false,
+        timer: 2000
+      });
+    
 }
 
 function mostrarCarrito(){
     const carritoLista = document.getElementById("carritoLista");
     carritoLista.innerHTML = "";
+
     carrito.forEach(producto => {
         const li = document.createElement("li");
         li.textContent = `
@@ -72,29 +75,39 @@ function vaciarCarrito() {
 
     if (productosEliminados.length > 0) {
         const productosEliminadosTexto = productosEliminados.map(producto => producto.nombre).join(", ");
-        alert(`Productos eliminados: ${productosEliminadosTexto}`);
+        Swal.fire(`Productos eliminados: ${productosEliminadosTexto}`);
+
     } else {
-        alert("El carrito ya estaba vacío.");
+        //alert("El carrito ya estaba vacío.");
+        Swal.fire("El carrito ya estaba vacío.");
+
     }
 }
 
 function reiniciarTodo(){
+
     // Ocultar el carrito, la sección de pago y la lista de productos
     document.getElementById("carrito").style.display = "none";
     document.getElementById("pago").style.display = "none";
     document.getElementById("listaProductos").innerHTML = "";
 
+    //limpia el carrito y restablece el total a pagar
     carrito = [];
     document.getElementById("totalPagar").textContent = "";
 
+    //cerrar el menu despues de seleccionar una opcion
     document.getElementById("opciones").style.display= "none";
 }
 
 function realizarPago(){
-    document.getElementById("carrito").style.display = "none";
+    document.getElementById("carrito").style.display = "block";
     document.getElementById("pago").style.display = "block";
 }
 
+
+function comprar(){
+    realizarPago();
+}
 function calcularTotal(){
   
     const metodoPago = document.querySelector('input[name="metodoPago"]:checked');
@@ -106,9 +119,99 @@ function calcularTotal(){
 
             document.getElementById("totalPagar").textContent = `Total a pagar: $${totalPagar}`;
         } else {
-            alert("Selecciona un método de pago antes de calcular el total.");
+            //alert("Selecciona un método de pago antes de calcular el total.");
+            Swal.fire("Selecciona un método de pago antes de calcular el total.");
         }
 }
+
+
+let resumenCompra = "";
+
+function finalizarCompra(){
+    const metodoPago =document.querySelector('input[name="metodoPago"]:checked');
+
+    if(!metodoPago){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Selecciona un método de pago antes de finalizar la compra.',
+        })
+        //alert("seleccione un metodo de pago antes de continuar.");
+        return;
+    }
+
+    const total =carrito.reduce((acc,producto)  => acc + producto.precio,0);
+    let recargo = 0.0;
+    let descuento = 0.0;
+
+    
+    if(metodoPago.value === "tarjeta"){
+        recargo = 0.10;
+        //alert("Recargo del 10% aplicado por pago en tarjeta");
+        Swal.fire({
+            icon: 'info',
+            title: 'Recargo aplicado',
+            text: 'Recargo del 10% aplicado por pago en tarjeta.',
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+        });
+
+    }else{
+        descuento = 0.05;
+        Swal.fire({
+            icon: 'info',
+            title: 'Descuento aplicado',
+            text: 'Descuento del 5% aplicado por pago en efectivo.',
+        })
+        //alert("Descuento del 5% aplicado por pago en efectivo");
+    }
+    const importeFinal = (total * (1 + recargo - descuento)).toFixed(2);
+
+    let resumenCompra = "Resumen de la compra: \n";
+    resumenCompra += "Productos: \n";
+
+    carrito.forEach(producto =>{
+        resumenCompra += `${producto.nombre} - Precio: $${producto.precio}\n`;
+    });
+
+    resumenCompra += `\nMetodo de pago: ${metodoPago.value}\n`;
+
+    if(recargo > 0 ) {
+        resumenCompra +=  `Recargo: ${recargo * 100}%\n`;
+    }else if(descuento > 0){
+        resumenCompra +=  `Descuento: ${descuento * 100}%\n`;
+    }
+    //resumenCompra += `Recargo: ${recargo * 100}%\n`;
+    resumenCompra += `Importe Final: $${importeFinal}\n`;
+    
+    Swal.fire({
+        icon: 'info',
+        title: 'Resumen de la compra',
+        html: resumenCompra,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Finalizar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Compra Finalizada!",
+            text: "Gracias por su compra!.",
+            icon: "success"
+          });
+          reiniciarTodo();
+        }
+    });
+
+    //alert(resumenCompra);
+}
+
 
 function mostrarOpciones(){
     const opciones = document.getElementById("opciones");
