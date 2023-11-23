@@ -3,7 +3,12 @@ body {
     margin: 20px;
     padding: 20px;
 }
+/* EJEMPLO DE CLASE 15: */
+.color{
+    background-color: brown;
+}
 
+/* FIN EJEMPLO CLASE 15 */
 .titulo{
         text-align: center;
         color: #333;
