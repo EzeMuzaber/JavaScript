@@ -1,7 +1,3 @@
-function mostrarOpciones() {
-    const opciones = document.getElementById("opciones");
-    opciones.style.display = opciones.style.display === "none" ? "block" : "none";
-}
 
 function fetchProductos(){
     return new Promise(async (resolve,reject) =>{
@@ -134,9 +130,6 @@ function calcularTotal() {
     }
 }
 
-
-let resumenCompra = "";
-
 function finalizarCompra() {
     const metodoPago = document.querySelector('input[name="metodoPago"]:checked');
 
@@ -218,8 +211,6 @@ async function cargarJuegosPorEdades(){
 }
 cargarJuegosPorEdades();
 
-//document.getElementById("verJuegosPorEdades").addEventListener("click", mostrarOpciones);
-
 function verJuegosPorEdades() {
     const opciones = {
         1: "Menores de 12 años",
@@ -285,3 +276,4 @@ function mostrarOpciones() {
     const opciones = document.getElementById("opciones");
     opciones.style.display = opciones.style.display === "none" ? "block" : "none";
 };
+
