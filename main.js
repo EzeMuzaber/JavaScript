@@ -47,15 +47,17 @@ async function mostrarProductos() {
 function agregarAlCarrito(producto) {
     carrito.push(producto);
     mostrarCarrito();
-
+    
     Swal.fire({
-        position: "top-end",
-        icon: "success",
         title: `Producto "${producto.nombre}" agregado al carrito`,
-        showConfirmButton: false,
-        timer: 1800
+        imageUrl: producto.imagen,
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: "Custom image"
     });
-
+    setTimeout(() => {
+        Swal.close();
+    }, 2000);
 }
 
 function mostrarCarrito() {
@@ -76,7 +78,8 @@ function mostrarCarrito() {
 
 
 function vaciarCarrito() {
-    const productosEliminados = carrito.slice(); // Copia de la lista de productos en el carrito
+    // Copia de la lista de productos en el carrito
+    const productosEliminados = carrito.slice(); 
     carrito = [];
     mostrarCarrito();
 
@@ -92,7 +95,6 @@ function vaciarCarrito() {
 }
 
 function reiniciarTodo() {
-
     // Ocultar el carrito, la sección de pago y la lista de productos
     document.getElementById("carrito").style.display = "none";
     document.getElementById("pago").style.display = "none";
@@ -138,10 +140,46 @@ function finalizarCompra() {
             icon: 'error',
             title: 'Oops...',
             text: 'Selecciona un método de pago antes de finalizar la compra.',
-        })
+        });
         return;
     }
-
+    // Preguntar por el correo electrónico antes del resumen de compra
+    Swal.fire({
+        icon: 'question',
+        title: '¿Deseas recibir una factura?',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Usuario desea recibir una factura?
+            Swal.fire({
+                icon: 'question',
+                title: 'Por favor, ingresa tu dirección de correo electrónico para enviar la factura:',
+                input: 'email',
+                inputPlaceholder: 'Correo electrónico',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Enviar factura',
+                cancelButtonText: 'No enviar'
+            }).then((emailResult) => {
+                if (emailResult.isConfirmed) {
+                    const email = emailResult.value;
+                    // mostrar el resumen de la compra después de obtener el correo electrónico
+                    mostrarResumenCompra(metodoPago, email);
+                }
+            });
+        } else {
+            // Usuario no desea recibir una factura, se muestra el resumen
+            mostrarResumenCompra(metodoPago, null);
+        }
+    });
+}
+//Resumen de compra:
+function mostrarResumenCompra(metodoPago, email) {
     const total = carrito.reduce((acc, producto) => acc + producto.precio, 0);
     let recargo = 0.0;
     let descuento = 0.0;
@@ -165,8 +203,10 @@ function finalizarCompra() {
             ${recargo > 0 ? `<p>Recargo: ${recargo * 100}%</p>` : ''}
             ${descuento > 0 ? `<p>Descuento: ${descuento * 100}%</p>` : ''}
             <p>Importe Final: $${importeFinal}</p>
+            ${email ? `<p>Correo electrónico: ${email}</p>` : ''}
         </div>
     `;
+
     Swal.fire({
         icon: 'info',
         title: 'Resumen de la compra',
@@ -185,7 +225,7 @@ function finalizarCompra() {
             reiniciarTodo();
         }
     });
-};
+}
 
 function fetchJuegosPorEdades(){
     return new Promise(async(resolve,reject)=> {
