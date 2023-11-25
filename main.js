@@ -57,7 +57,7 @@ function agregarAlCarrito(producto) {
     });
     setTimeout(() => {
         Swal.close();
-    }, 2000);
+    }, 4000);
 }
 
 function mostrarCarrito() {
