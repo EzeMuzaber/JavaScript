@@ -1,0 +1,17 @@
+[
+    { "id": 1, "nombre": "Fornite", "precio": 3500 },
+    { "id": 2, "nombre": "Pokemon go", "precio": 3200 },
+    { "id": 3, "nombre": "Clash royale", "precio": 1580 },
+    { "id": 4, "nombre": "Uno", "precio": 1010 },
+    { "id": 5, "nombre": "Call of duty", "precio": 9500 },
+    { "id": 6, "nombre": "Gta V", "precio": 9000 },
+    { "id": 7, "nombre": "Candy crush", "precio": 1750 },
+    { "id": 8, "nombre": "Roblox", "precio": 3000 },
+    { "id": 9, "nombre": "Rocket League", "precio": 2200 },
+    { "id": 10,"nombre": "Left for dead 2", "precio": 2500 },
+    { "id": 11,"nombre": "Los Sims", "precio": 2900 },
+    { "id": 12,"nombre": "League of Legends", "precio": 4500 },
+    { "id": 13,"nombre": "Battlefield V", "precio": 6500 },
+    { "id": 14,"nombre": "American truck", "precio": 4500 },
+    { "id": 15,"nombre": "Tomb Raider", "precio": 5900 }
+]

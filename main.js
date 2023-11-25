@@ -3,46 +3,50 @@ function mostrarOpciones() {
     opciones.style.display = opciones.style.display === "none" ? "block" : "none";
 }
 
-const productos = [
-    { id: 1, nombre: "Fornite", precio: 2300 },
-    { id: 2, nombre: "Pokemon go", precio: 2500 },
-    { id: 3, nombre: "Clash royale", precio: 1500 },
-    { id: 4, nombre: "Uno", precio: 910 },
-    { id: 5, nombre: "Call of duty", precio: 8000 },
-    { id: 6, nombre: "Gta iv", precio: 8000 },
-    { id: 7, nombre: "Candy crush", precio: 1100 },
-    { id: 8, nombre: "Roblox", precio: 3000 },
-    { id: 9, nombre: "Rocket League", precio: 2200 },
-    { id: 10, nombre: "Left for dead 2", precio: 1500 },
-    { id: 11, nombre: "Los Sims", precio: 1900 },
-    { id: 12, nombre: "League of Legends", precio: 2500 },
-    { id: 13, nombre: "Battlefield V", precio: 5500 },
-];
+function fetchProductos(){
+    return new Promise(async (resolve,reject) =>{
+        try{
+            const response = await fetch('data.json');
+            const products = await response.json();
+            resolve (products);
+        } catch(error){
+            console.error('Error en la busqueda de productos: ',error);
+            reject(error);
+        }
+    })
+    
+}
 
 let carrito = [];
 // Limpiar la lista antes de mostrar los productos
-function mostrarProductos() {
+async function mostrarProductos() {
     const listaProductos = document.getElementById("listaProductos");
     listaProductos.innerHTML = "";
 
-    productos.forEach(producto => {
-        const li = document.createElement("li");
-        li.textContent = `
-        Id: ${producto.id},
-        Nombre: ${producto.nombre},
-        Precio: $${producto.precio}
-        `;
+    try{
+        const productos = await fetchProductos();
 
-        //agregamos un boton para agregar el producto al carrito
-        const agregarBtn = document.createElement("button");
-        agregarBtn.textContent = "agregar al carrito";
-        agregarBtn.addEventListener("click", () => agregarAlCarrito(producto));
+        productos.forEach(producto => {
+            const li = document.createElement("li");
+            li.textContent = `
+            Id: ${producto.id},
+            Nombre: ${producto.nombre},
+            Precio: $${producto.precio}
+            `;
 
-        li.appendChild(agregarBtn);
+            //agregamos un boton para agregar el producto al carrito
+            const agregarBtn = document.createElement("button");
+            agregarBtn.textContent = "agregar al carrito";
+            agregarBtn.addEventListener("click", () => agregarAlCarrito(producto));
 
-        listaProductos.appendChild(li);
-    });
-}
+            li.appendChild(agregarBtn);
+
+            listaProductos.appendChild(li);
+        });
+    }catch(error){
+        console.error('Error al mostrar productos:', error);
+    }
+} 
 
 function agregarAlCarrito(producto) {
     carrito.push(producto);
@@ -73,6 +77,7 @@ function mostrarCarrito() {
 
     document.getElementById("carrito").style.display = "block";
 }
+
 
 function vaciarCarrito() {
     const productosEliminados = carrito.slice(); // Copia de la lista de productos en el carrito
@@ -189,28 +194,31 @@ function finalizarCompra() {
     });
 };
 
-const juegosPorEdades = {
-    1: [
-        { id: 1, nombre: "Fornite", precio: 2300 },
-        { id: 2, nombre: "Uno", precio: 910 },
-        { id: 3, nombre: "Los Sims", precio: 1900 },
-        { id: 4, nombre: "Pokemon go", precio: 2500 },
-    ],
-    2: [
-        { id: 1, nombre: "Clash royale", precio: 1500 },
-        { id: 2, nombre: "League of Legends", precio: 2500 },
-        { id: 3, nombre: "Candy crush", precio: 1100 },
-        { id: 4, nombre: "Roblox", precio: 3000 },
-    ],
-    3: [
-        { id:1,  nombre: "Rocket League", precio: 2200 },
-        { id:2 , nombre: "Left for dead 2", precio: 1500 },
-        { id:3,  nombre: "Battlefield V", precio: 5500 },
-        { id:4, nombre: "Gta iv", precio: 8000 },
-        { id:5, nombre: "Call of duty", precio: 8000 },
-    ]};
+function fetchJuegosPorEdades(){
+    return new Promise(async(resolve,reject)=> {
+        try{
+            const response = await fetch('juegosPorEdades.json');
+            const juegosPorEdades= await response.json();
+            resolve(juegosPorEdades);
+        }catch{
+            console.error('Error en la busqueda de productos: ',error);
+            reject(error);
+        };
+    });
+};
 
-document.getElementById("verJuegosPorEdades").addEventListener("click", mostrarOpciones);
+
+let juegosPorEdades ={};
+async function cargarJuegosPorEdades(){
+    try{
+        juegosPorEdades = await fetchJuegosPorEdades();
+    }catch(error){
+        console.log('Error al cargar juegos por edades:', error);
+    }
+}
+cargarJuegosPorEdades();
+
+//document.getElementById("verJuegosPorEdades").addEventListener("click", mostrarOpciones);
 
 function verJuegosPorEdades() {
     const opciones = {

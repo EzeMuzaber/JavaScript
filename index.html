@@ -1,74 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
 
-     <!-- LINK DE BOOTSTRAP 5.2.3 LOCAL-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- LINK DE BOOTSTRAP 5.2.3 LOCAL-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+
 <body>
-<div>
-    <h1 class="titulo">Bienvenidos al portal del juego</h1>
-    <h3 class="parrafo">Por favor toque el boton "menu" para comenzar.</h3>
-</div>
-<div id="menu">
-    <button onclick="mostrarOpciones()">Menu</button>
-    <button onclick="reiniciarTodo()">Reiniciar todo</button>
+    <header>
+        <div>
+            <h1 class="titulo">Bienvenidos al portal del juego</h1>
+            <h3 class="parrafo">Por favor toque el boton "menu" para comenzar.</h3>
+        </div>
+        <div id="menu">
+            <button onclick="mostrarOpciones()" class="btn btn-outline-info"><b>Menu</b></button>
+            <button onclick="reiniciarTodo()" class="btn btn-outline-danger"><b>Reiniciar todo</b></button>
+            <hr>
+            <ul id="opciones" style="display:none;">
+                <li>
+                    <a href="#" onclick="mostrarProductos()">Buscar Productos</a>
+                </li>
+                <li>
+                    <a href="#" onclick="mostrarCarrito()">Ver carrito</a>
+                </li>
+                <li>
+                    <a href="#" onclick="realizarPago()">Realizar pago</a>
+                </li>
+                </li>
+                <li>
+                    <a href="#" onclick="verJuegosPorEdades()">Ver juegos por edades.</a>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+
+    <ul id="listaProductos" ></ul>
     <hr>
-    <ul id="opciones" style="display:none;">
-        <li>
-            <a href="#" onclick="mostrarProductos()">Buscar Productos</a>
-        </li>
-        <li>
-            <a href="#" onclick="mostrarCarrito()">Ver carrito</a>
-        </li>
-        <li>
-            <a href="#" onclick="realizarPago()">Realizar pago</a>
-        </li>
-        </li>
-        <li>
-            <a href="#" onclick="verJuegosPorEdades()">Ver juegos por edades.</a>
-        </li>
-       
-    </ul>
-</div>
+    <!-- CARRITO DE COMPRAS -->
+    <div id="carrito" style="display:none;">
+        <h2>Carrito de compras</h2>
+        <ul id="carritoLista"></ul>
+        <button onclick="vaciarCarrito()"  class="btn btn-outline-warning"><b>Vaciar carrito</b></button>
+        <button onclick="comprar()"  class="btn btn-outline-success"><b>Comprar</b></button>
+    </div>
+    <hr>
+    <!-- REALIZAR PAGO -->
+    <div id="pago" style="display:none;">
+        <h2>Realizar pago</h2>
+        <label class="btn btn-outline-success">
+            <input type="radio" name="metodoPago" value="efectivo" class="radios"> <b>Efectivo</b>
+        </label>
+        <label class="btn btn-outline-success">
+            <input type="radio" name="metodoPago" value="tarjeta" class="radios"> <b>Tarjeta</b>
+        </label>
+
+        <button onclick="calcularTotal()" class="btn btn-outline-info"><b>Calcular Total</b></button>
+        <p id="totalPagar"></p>
+        <button onclick="reiniciarTodo()" class="btn btn-outline-danger"><b>Reiniciar todo</b></button>
+        <button onclick="finalizarCompra()" class="btn btn-outline-success"><b>Finalizar compra</b></button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<ul id="listaProductos"></ul>
-<hr>
-<div id="carrito" style="display:none;">
-    <h2>Carrito de compras</h2>
-    <ul id="carritoLista"></ul>
-    <button onclick="vaciarCarrito()">Vaciar carrito</button>
-    <button onclick="comprar()">Comprar</button>
-</div>
-<hr>
-<div id="pago" style="display:none;">
-    <h2>Realizar pago</h2>
-    <label>
-        <input type="radio" name="metodoPago" value="efectivo">Efectivo
-    </label>
-    <label>
-        <input type="radio" name="metodoPago" value="tarjeta">Tarjeta
-    </label>
-
-    <button onclick=calcularTotal()>Calcular Total</button>
-    <p id="totalPagar"></p>
-    <button onclick="reiniciarTodo()">Reiniciar todo</button>
-    <button onclick="finalizarCompra()">Finalizar compra</button>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-<script src="./main.js"></script>
+    <script src="./main.js"></script>
+  
 
 </body>
+
 </html>
