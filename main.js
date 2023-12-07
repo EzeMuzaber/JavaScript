@@ -13,8 +13,9 @@ function fetchProductos(){
     
 }
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 // Limpiar la lista antes de mostrar los productos
+
 async function mostrarProductos() {
     const listaProductos = document.getElementById("listaProductos");
     listaProductos.innerHTML = "";
@@ -46,6 +47,7 @@ async function mostrarProductos() {
 
 function agregarAlCarrito(producto) {
     carrito.push(producto);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
     mostrarCarrito();
     
     Swal.fire({
@@ -101,8 +103,9 @@ function reiniciarTodo() {
     document.getElementById("listaProductos").innerHTML = "";
 
     //limpia el carrito y restablece el total a pagar
-    carrito = [];
+    localStorage.removeItem('carrito');
     document.getElementById("totalPagar").textContent = "";
+    carrito = [];
 
     //cerrar el menu despues de seleccionar una opcion
     document.getElementById("opciones").style.display = "none";
